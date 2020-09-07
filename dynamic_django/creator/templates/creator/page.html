@@ -1,1 +1,17 @@
 <h1>Hello {{ page.page }}</h1>
+
+{% for s in sections %}
+<h2>  {{ s }} </h2>
+
+    {% for c in content %}
+
+        {% if c.section == s %}
+            
+            {{ c.tag }}: <p>
+            {{ c }}
+
+        {% endif %}
+
+    {% endfor %}
+
+{% endfor %}

@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Page
+from .models import Page, Sections, Content
 
 
 def index(request):
@@ -8,9 +8,13 @@ def index(request):
 
 def page(request, target):
     item = Page.objects.get(page=target)
+    sec = Sections.objects.filter(page=item)
+    cont = Content.objects.filter(page=item)
 
     context = {
-        'page': item
+        'page': item,
+        'sections': sec,
+        'content': cont,
     }
 
     return render(request, 'creator/page.html', context)
